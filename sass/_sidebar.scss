@@ -14,32 +14,87 @@
     }
 }
 
-.nav-btn {
-    border: none;
-    border-radius: none;
-    margin-top: 4rem;
-
-    width: 4.5rem;
-    height: 2px;
-    background-color: #fff;
-
-    &:before,
-    &:after {
-        content: '';
-        width: 4.5rem;
-        height: 2px;
-        background-color: #fff;
-        display: block;
-    }
-
-    &::before { transform: translateY(-1.5rem); }
-    &::after { transform: translateY(1.3rem); }
-
-    @media only screen and (max-width: $bp-large) {
-        margin-top: 0;
-        margin-right: 3rem;
-
-        &::before { transform: translateY(-1.2rem); }
-        &::after { transform: translateY(1rem); }
-    }
+#menu__toggle {
+    opacity: 0;
 }
+  
+#menu__toggle:checked + .menu__btn > span {
+    transform: rotate(45deg);
+}
+#menu__toggle:checked + .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0deg);
+}
+  
+#menu__toggle:checked + .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+}
+  
+#menu__toggle:checked ~ .menu__box {
+    left: 0 !important;
+}
+  
+.menu__btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 3;
+}
+  
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: $color-grey-light-1;
+    transition-duration: .25s;
+}
+  
+.menu__btn > span::before {
+    content: '';
+    top: -8px;
+}
+  
+.menu__btn > span::after {
+    content: '';
+    top: 8px;
+}
+  
+.menu__box {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: $color-primary;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+    transition-duration: .25s;
+    z-index: 2;
+}
+  
+.menu__item {
+    display: block;
+    padding: 12px 24px;
+    color: $color-grey-light-1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: .25s;
+  }
+  .menu__item:hover {
+    color: $color-grey-dark-1;
+  }
